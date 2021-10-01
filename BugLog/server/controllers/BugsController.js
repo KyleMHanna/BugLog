@@ -1,7 +1,7 @@
 import BaseController from '../utils/BaseController.js'
 import { logger } from '../utils/Logger.js'
 import { Auth0Provider } from '@bcwdev/auth0provider'
-import { bugsService } from '../services/BugsService.js'
+import { bugsService } from '../services/BugService.js'
 
 export class BugsController extends BaseController {
   constructor() {

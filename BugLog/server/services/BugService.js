@@ -4,7 +4,7 @@ import { BadRequest, Forbidden } from '../utils/Errors.js'
 
 class BugsService {
   async createBug(bugData) {
-    const bug = await dbContext.bugs.create(bugData)
+    const bug = await dbContext.Bugs.create(bugData)
     return bug
   }
 
@@ -17,13 +17,13 @@ class BugsService {
   }
 
   async getBugs(query) {
-    const bugs = await dbContext.bugs.find(query).populate('creator', 'name picture')
+    const bugs = await dbContext.Bugs.find(query).populate('creator', 'name picture')
     return bugs
   }
 
   //  Edits bug (Restricted when the bug is closed)
   async editBug(bugId, userId, bugData) {
-    const bug = await dbContext.bugs.findOneAndUpdate({ _id: bugId, creatorId: userId }, bugData)
+    const bug = await dbContext.Bugs.findOneAndUpdate({ _id: bugId, creatorId: userId }, bugData)
     if (userId !== bug.creatorId.toString()) {
       throw new Forbidden('You shall not pass!!!')
     }
