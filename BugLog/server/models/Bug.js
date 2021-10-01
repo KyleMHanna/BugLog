@@ -18,12 +18,3 @@ BugSchema.virtual('creator', {
   ref: 'Account',
   justOne: true
 })
-
-// 'closed',
-// 'title',
-// 'description',
-// 'creatorId',
-// 'creator',
-// 'priority',
-// 'updatedAt',
-// 'id'

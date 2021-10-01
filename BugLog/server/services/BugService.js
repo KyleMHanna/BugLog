@@ -2,7 +2,7 @@ import { dbContext } from '../db/DbContext.js'
 import { BadRequest, Forbidden } from '../utils/Errors.js'
 // import { logger } from '../utils/Logger.js'
 
-class BugService {
+class BugsService {
   async createBug(bugData) {
     const bug = await dbContext.bugs.create(bugData)
     return bug
@@ -31,4 +31,4 @@ class BugService {
   }
 }
 
-export const bugService = new BugService()
+export const bugsService = new BugsService()
