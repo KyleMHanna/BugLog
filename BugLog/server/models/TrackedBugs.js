@@ -3,22 +3,22 @@ const Schema = mongoose.Schema
 
 export const TrackedBugsSchema = new Schema(
   {
-    bugId: { type: Schema.Types.ObjectId, ref: 'Account', required: true },
+    bugId: { type: Schema.Types.ObjectId, ref: 'bug', required: true },
     accountId: { type: Schema.Types.ObjectId, ref: 'Account', required: true },
     tracker: { type: Schema.Types.ObjectId, ref: 'tracker', required: true },
-    bug: { type: Schema.Types.ObjectId, ref: 'bug', required: true }
+    bug: { type: Schema.Types.ObjectId, ref: 'bug' }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
 TrackedBugsSchema.virtual('bug', {
-  localField: 'creatorId',
+  localField: 'bugId',
   foreignField: '_id',
-  ref: 'Account',
+  ref: 'bug',
   justOne: true
 })
 
 TrackedBugsSchema.virtual('tracker', {
-  localField: 'creatorId',
+  localField: 'accountId',
   foreignField: '_id',
   ref: 'Account',
   justOne: true
