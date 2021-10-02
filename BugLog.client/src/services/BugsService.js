@@ -2,6 +2,7 @@ import { AppState } from '../AppState.js'
 import { Bug } from '../Models/Bug.js'
 import { logger } from '../utils/Logger.js'
 import { api } from './AxiosService.js'
+import { router } from '../router'
 
 class BugsService {
   async getBugs(query = '') {
@@ -20,6 +21,8 @@ class BugsService {
   async createBug(bug) {
     const res = await api.post('api/bugs', bug)
     AppState.bugs.push(new Bug(res.data))
+  // FIXME -
+    // router.push({ name: 'BugDetailsPage', params: { bugId: res.data.id } })
   }
 }
 
