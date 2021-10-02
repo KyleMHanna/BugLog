@@ -4,7 +4,7 @@ import { BadRequest, Forbidden } from '../utils/Errors.js'
 
 class BugsService {
   async createBug(bugData) {
-    const bug = await dbContext.Bugs.create(bugData)
+    const bug = await dbContext.Bugs.create(bugData).populate('creator')
     return bug
   }
 
