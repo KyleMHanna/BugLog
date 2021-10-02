@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 export const BugSchema = new Schema(
   {
-    closed: { type: Boolean },
+    closed: { type: Boolean, required: true, default: false },
     title: { type: String, required: true },
     description: { type: String, required: true },
     creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true },
