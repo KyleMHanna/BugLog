@@ -4,12 +4,13 @@ import { BadRequest, Forbidden } from '../utils/Errors.js'
 
 class BugsService {
   async createBug(bugData) {
-    const bug = await dbContext.Bugs.create(bugData).populate('creator')
+    const bug = await dbContext.Bugs.create(bugData)
+    await bug.populate('creator')
     return bug
   }
 
   async getBugById(bugId) {
-    const bug = await dbContext.Bugs.findById(bugId).populate('creator', 'name picture')
+    const bug = await dbContext.Bugs.findById(bugId).populate('creator')
     if (!bug) {
       throw new BadRequest('Invalid bugId')
     }
@@ -17,7 +18,7 @@ class BugsService {
   }
 
   async getBugs(query) {
-    const bugs = await dbContext.Bugs.find(query).populate('creator', 'name picture')
+    const bugs = await dbContext.Bugs.find(query).sort('-createdAt').populate('creator')
     return bugs
   }
 
