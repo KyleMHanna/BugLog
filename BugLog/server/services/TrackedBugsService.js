@@ -6,7 +6,7 @@ class TrackedBugsService {
   async createTrackedBug(trackedBugData, bugId) {
     await bugsService.getBugById(trackedBugData.bugId)
 
-    if (trackedBugData.bugid === 'bug') {
+    if (trackedBugData.bugId === 'bug') {
       throw new Forbidden('Bug has already been tracked')
     }
     const trackedbug = await dbContext.TrackedBugs.create(trackedBugData)
