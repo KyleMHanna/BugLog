@@ -11,6 +11,11 @@ class BugsService {
     AppState.bugs = res.data.map(b => new Bug(b))
   }
 
+  async getAllBugs() {
+    const res = await api.get('api/bugs')
+    AppState.bugs = res.data.reverse()
+  }
+
   async getBugsById(bugId) {
     AppState.bug = null
     const res = await api.get(`api/bugs/${bugId}`)
@@ -20,9 +25,15 @@ class BugsService {
 
   async createBug(bug) {
     const res = await api.post('api/bugs', bug)
+
     AppState.bugs.push(new Bug(res.data))
+
   // FIXME -
     // router.push({ name: 'BugDetailsPage', params: { bugId: res.data.id } })
+  }
+
+  async filterBugs() {
+    AppState.bugs = AppState.bugs.filter(b => b.closed === false)
   }
 }
 

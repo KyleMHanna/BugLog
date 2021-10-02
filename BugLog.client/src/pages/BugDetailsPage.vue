@@ -1,13 +1,33 @@
 <template>
   <div class="component">
-    Hi from bugs details
+    <h5>
+      Hi from bugs details
+    </h5>
   </div>
+  <BugCard v-for="b in bugs" :key="b.id" :bug="b" />
 </template>
 
 <script>
+import { computed, onMounted } from '@vue/runtime-core'
+import { AppState } from '../AppState.js'
+import { bugsService } from '../services/BugsService.js'
+import Pop from '../utils/Pop.js'
 export default {
   setup() {
-    return {}
+    const account = computed(() => AppState.account)
+
+    onMounted(async() => {
+      try {
+        await bugsService.getBugs()
+      } catch (error) {
+        Pop.toast(error.message, 'error')
+      }
+    })
+
+    return {
+      account,
+      bugs: computed(() => AppState.bugs)
+    }
   }
 }
 </script>
