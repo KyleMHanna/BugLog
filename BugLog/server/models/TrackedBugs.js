@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 export const TrackedBugsSchema = new Schema(
   {
-    bugId: { type: Schema.Types.ObjectId, ref: 'bug', required: true },
+    bugId: { type: Schema.Types.ObjectId, ref: 'Bug', required: true },
     accountId: { type: Schema.Types.ObjectId, ref: 'Account', required: true }
 
   },
@@ -12,7 +12,7 @@ export const TrackedBugsSchema = new Schema(
 TrackedBugsSchema.virtual('bug', {
   localField: 'bugId',
   foreignField: '_id',
-  ref: 'bug',
+  ref: 'Bug',
   justOne: true
 })
 

@@ -1,7 +1,6 @@
 import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
-
-import { notesService } from '../services/NotesService'
+import { noteService } from '../services/NoteService.js'
 
 export class NotesController extends BaseController {
   constructor() {
@@ -9,14 +8,23 @@ export class NotesController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createNote)
-      .delete('/:noteId', this.deleteNote)
+      .delete('/notes/:noteId', this.deleteNote)
   }
 
   async createNote(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
-      const note = await notesService.createNote(req.body)
+      const note = await noteService.createNote(req.body)
       return res.send(note)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async deleteNote(req, res, next) {
+    try {
+      const note = await noteService.deleteNote(req.params.noteId)
+      res.send(note)
     } catch (error) {
       next(error)
     }
