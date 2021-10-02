@@ -1,19 +1,13 @@
 <template>
-  <div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          Hello from bugscontroller
-          <button class="btn-btn bg-primary text-light selectable mt-3" data-bs-toggle="modal" data-bs-target="#bug-form">
-            Add a Bug
-          </button>
-        </div>
-      </div>
-      <div class="row">
-        <BugCard v-for="bug in bugs" :key="bug.id" :bug="bug" class="col-md-12" />
-      </div>
+  <div class="container-fluid">
+    <div class="row">
+      <button class="btn-btn bg-primary text-light selectable mt-3" data-bs-toggle="modal" data-bs-target="#bug-form">
+        Add a Bug
+      </button>
+      <BugCard v-for="bug in bugs" :key="bug.id" :bug="bug" />
     </div>
   </div>
+
   <Modal id="bug-form">
     <template #modal-title>
       Add a Bug
