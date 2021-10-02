@@ -17,6 +17,13 @@ class BugsService {
     return bug
   }
 
+  async getNotesById(bugId) {
+    const bug = await dbContext.Notes.findById(bugId).populate('creator')
+    if (!bug) {
+      throw BadRequest('invalid Id')
+    }
+  }
+
   async getBugs(query) {
     const bugs = await dbContext.Bugs.find(query).sort('-createdAt').populate('creator')
     return bugs
@@ -28,6 +35,18 @@ class BugsService {
     if (userId !== bug.creatorId.toString()) {
       throw new Forbidden('You shall not pass!!!')
     }
+    bug.title = bugData.title || bug.title
+    bug.description = bugData.description || bug.description
+    bug.priority = bugData.priority || bug.priority
+    await bug.save()
+    return bug
+  }
+
+  async closeBug(bugId, userId) {
+    const bug = await this.getBugById(bugId)
+    if (bug.closed === true) { return }
+    bug.closed = true
+    await bug.save()
     return bug
   }
 }
