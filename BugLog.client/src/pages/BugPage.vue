@@ -14,8 +14,9 @@
           <div class="col-md-3 card-header text-center">
             Description
           </div>
+
+          <!-- priority sort functoinality -->
           <div class="col-md-3 card-header text-center">
-            <!-- This is the Priorty Sorter -->
             <div class="col bg-dark">
               <button class="btn selectable me-2 text-white" @click="toggleAscending">
                 <i class="mdi mdi-arrow-up" v-if="ascending"></i>
