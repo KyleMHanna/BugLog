@@ -1,11 +1,11 @@
 <template>
-  <div class="container-fluid">
-    <!-- <div class="row result-controls" @contextmenu.prevent v-if="bugs.Priorty">
+  <!-- <div class="row result-controls" @contextmenu.prevent v-if="bugs.Priorty">
     </div> -->
+  <!-- <button class="btn-btn bg-success  selectable mt-3" data-bs-toggle="modal" data-bs-target="#bug-form">
+      <i class="mdi mdi-plus">Bug</i>
+    </button> -->
+  <div class="container-fluid">
     <div class="row">
-      <button class="btn-btn bg-success  selectable mt-3" data-bs-toggle="modal" data-bs-target="#bug-form">
-        <i class="mdi mdi-plus">Bug</i>
-      </button>
       <div class="containter-fluid">
         <div class="row">
           <div class="col-md-3 card-header text-center">

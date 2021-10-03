@@ -6,13 +6,14 @@ import { api } from './AxiosService.js'
 
 class NotesService {
   async getNotesByBugId(bugId) {
-    const res = await api.get('api/bugs/' + bugId + '/notes')
+    const res = await api.get(`api/bugs/${bugId}/notes`)
     AppState.notes = res.data
   }
 
   async createNote(note) {
     const res = await api.post('api/notes', note)
     AppState.notes.push(res.data)
+    // this.getNotesByBugId(bugId)
   }
 
   async deleteNote(noteId) {

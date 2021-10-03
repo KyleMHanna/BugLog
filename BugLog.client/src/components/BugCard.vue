@@ -30,7 +30,6 @@
           <div class="col-md-3 elevation-5 p-3  shadow-lg ">
             <div class="text-center selectable" v-if="bug.closed == true">
               <i class="mdi mdi-circle mdi-48px text-success "></i>
-              <span> {{ bug.closed }}</span>
             </div>
             <div class="text-center selectable" v-else>
               <i class="mdi mdi-circle mdi-48px  text-danger"></i>

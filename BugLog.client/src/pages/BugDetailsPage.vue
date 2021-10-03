@@ -1,4 +1,7 @@
 <template>
+  <button class="btn-btn bg-success  selectable mt-3" data-bs-toggle="modal" data-bs-target="#note-form">
+    <i class="mdi mdi-plus">Note</i>
+  </button>
   <div class="BugDetailsPage container-fluid">
     <div class="row my-5 align-content-center" v-if="currentBug">
       <div class="col-12 d-flex justify-content-center">
@@ -38,6 +41,16 @@
       </div>
     </div>
   </div>
+  <NoteCard v-for="n in notes" :key="n.id" :note="n" />
+
+  <Modal id="note-form">
+    <template #modal-title>
+      Add a note
+    </template>
+    <template #modal-body>
+      <NoteForm />
+    </template>
+  </Modal>
 </template>
 
 <script>
@@ -46,17 +59,19 @@ import { useRoute } from 'vue-router'
 import { bugsService } from '../services/BugsService.js'
 import { AppState } from '../AppState.js'
 import Pop from '../utils/Pop.js'
-// import { Bug } from '../Models/Bug.js'
+import { notesService } from '../services/NotesService.js'
+import { Bug } from '../Models/Bug.js'
 
 export default {
-  // props: {
-  //   bug: { type: Bug, required: true }
-  // },
-  setup() {
+  props: {
+    bug: { type: Bug, required: true }
+  },
+  setup(props) {
     const route = useRoute()
     onMounted(async() => {
       try {
         await bugsService.getBugById(route.params.bugId)
+        await notesService.getNotesByBugId(route.params.bugId)
       } catch (error) {
         Pop.toast(error, 'error')
       }
@@ -66,7 +81,8 @@ export default {
       account: computed(() => AppState.account),
       profile: computed(() => AppState.profile),
       currentBug: computed(() => AppState.currentBug),
-      bugs: computed(() => AppState.bugs)
+      bugs: computed(() => AppState.bugs),
+      notes: computed(() => AppState.notes)
 
     }
   }
