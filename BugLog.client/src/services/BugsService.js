@@ -1,6 +1,6 @@
 import { AppState } from '../AppState.js'
 import { Bug } from '../Models/Bug.js'
-import { logger } from '../utils/Logger.js'
+// import { logger } from '../utils/Logger.js'
 import { api } from './AxiosService.js'
 import { router } from '../router'
 import { convertToQuery } from '../utils/Query'
@@ -10,6 +10,7 @@ class BugsService {
     AppState.bugs = []
     const res = await api.get('api/bugs' + convertToQuery(query))
     AppState.bugs = res.data.map(b => new Bug(b))
+    AppState.currentBug = new Bug(res.data)
   }
 
   async getAllBugs() {
@@ -17,11 +18,9 @@ class BugsService {
     AppState.bugs = res.data
   }
 
-  async getBugsById(bugId) {
-    AppState.bug = null
-    const res = await api.get(`api/bugs/${bugId}`)
-    logger.log(res, '⚠ Getting bug by bugId')
-    AppState.bug = new Bug(bugId)
+  async getBugById(id) {
+    const res = await api.get('api/bugs/' + id)
+    AppState.currentBug = res.data
   }
 
   // TODO - make sure this is functioning properly
