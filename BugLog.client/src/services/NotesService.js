@@ -1,6 +1,8 @@
-import { AppState } from '../AppState'
-import Pop from '../utils/Notifier'
-import { api } from './AxiosService'
+import { AppState } from '../AppState.js'
+// import { Note } from '../Models/Note.js'
+import Pop from '../utils/Pop.js'
+// import { logger } from '../utils/Logger'
+import { api } from './AxiosService.js'
 
 class NotesService {
   async getNotesByBugId(bugId) {
