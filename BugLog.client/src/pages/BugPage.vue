@@ -23,7 +23,9 @@
                 <i class="mdi mdi-arrow-down" v-else></i>
               </button>
             </div>
-            Priorty
+            <button class="btn-btn bg-dark text-light rounded shadow" @click="order('all')">
+              Priority
+            </button>
           </div>
           <div class="col-md-3 card-header text-center">
             <button class="btn-btn bg-success text-dark rounded" @click="order('active')">
@@ -64,7 +66,7 @@ export default {
       return a.score - b.score
     }
     onMounted(() => {
-      bugsService.getBugs()
+      bugsService.getAllBugs()
     })
     return {
       ascending,

@@ -1,7 +1,7 @@
 import { AppState } from '../AppState.js'
 // import { Note } from '../Models/Note.js'
 import Pop from '../utils/Pop.js'
-// import { logger } from '../utils/Logger'
+import { logger } from '../utils/Logger'
 import { api } from './AxiosService.js'
 
 class NotesService {
@@ -10,10 +10,18 @@ class NotesService {
     AppState.notes = res.data
   }
 
-  async createNote(note) {
-    const res = await api.post('api/notes', note)
-    AppState.notes.push(res.data)
-    // this.getNotesByBugId(bugId)
+  // async createNote(note) {
+  //   const res = await api.post('api/notes', note)
+  //   AppState.notes.push(res.data)
+  //   // this.getNotesByBugId(bugId)
+  // }
+  async createNote(newNote) {
+    try {
+      const res = await api.post('api/notes', newNote)
+      AppState.notes.push(res.data)
+    } catch (error) {
+      logger.log('notes Service error', error)
+    }
   }
 
   async deleteNote(noteId) {

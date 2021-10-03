@@ -11,19 +11,17 @@
             </router-link>
           </div>
           <div class="col-md-3 elevation-5 p-3  shadow-lg">
-            <ul class="card-text text-style text-center ">
+            <h3 class="card-text text-style text-center ">
               {{ bug.description }}
-            </ul>
+            </h3>
           </div>
 
           <!-- Bug priority level -->
-          <div class="col-md-3 elevation-5 p-3  shadow-lg ">
-            <p class="card-text text-style text-center">
-              {{ bug.priority }}
-              <span>
-                Closed:     {{ new Date(bug.updatedAt).toLocaleString('en',date) }}
-              </span>
-            </p>
+          <div class="col-md-3 elevation-5 p-3  shadow-lg text-center ">
+            <h3>{{ bug.priority }}</h3>
+            <span>
+              Last Updated:    {{ new Date(bug.updatedAt).toLocaleString('en',date) }}
+            </span>
           </div>
 
           <!-- Bug Status oopen or closed -->

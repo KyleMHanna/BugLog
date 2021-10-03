@@ -6,11 +6,11 @@
     <div class="row my-5 align-content-center" v-if="currentBug">
       <div class="col-12 d-flex justify-content-center">
         <!-- FIXME -  -->
-        <!-- <div class="col-md-2">
+        <!-- <div class="col-md-1">
           <img :src="currentBug.creator.picture" class="rounded-circle image-fluid img-thumbnail img-height shadow">
           <p>{{ currentBug.creator.name }}</p>
         </div> -->
-        <div class="d-flex shadow p-2">
+        <div class="d-flex  p-2">
           <h1 class="my-auto">
             {{ currentBug.title }}
           </h1>
@@ -71,7 +71,6 @@ export default {
     onMounted(async() => {
       try {
         await bugsService.getBugById(route.params.bugId)
-        await notesService.getNotesByBugId(route.params.bugId)
       } catch (error) {
         Pop.toast(error, 'error')
       }
@@ -82,8 +81,10 @@ export default {
       profile: computed(() => AppState.profile),
       currentBug: computed(() => AppState.currentBug),
       bugs: computed(() => AppState.bugs),
-      notes: computed(() => AppState.notes)
-
+      notes: computed(() => AppState.notes),
+      async getNotes() {
+        await notesService.getNotesByBugId(props.bug.id)
+      }
     }
   }
 }
