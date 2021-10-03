@@ -3,8 +3,8 @@
     <!-- <div class="row result-controls" @contextmenu.prevent v-if="bugs.Priorty">
     </div> -->
     <div class="row">
-      <button class="btn-btn bg-primary text-light selectable mt-3" data-bs-toggle="modal" data-bs-target="#bug-form">
-        Add a Bug
+      <button class="btn-btn bg-success  selectable mt-3" data-bs-toggle="modal" data-bs-target="#bug-form">
+        <i class="mdi mdi-plus">Bug</i>
       </button>
       <div class="containter-fluid">
         <div class="row">
@@ -50,6 +50,7 @@ import { bugsService } from '../services/BugsService.js'
 import { AppState } from '../AppState.js'
 export default {
   setup() {
+    const account = computed(() => AppState.account)
     const ascending = ref(true)
     function scoreSorter(a, b) {
       if (ascending.value) {
@@ -62,6 +63,11 @@ export default {
     })
     return {
       ascending,
+      account,
+      bug: computed(() => AppState.bug),
+      profile: computed(() => AppState.profile),
+      sort: computed(() => AppState.sort),
+      currentBug: computed(() => AppState.currentBug),
       bugs: computed(() => AppState.bugs.sort(scoreSorter)),
       toggleAscending() {
         ascending.value = !ascending.value

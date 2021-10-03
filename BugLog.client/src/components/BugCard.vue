@@ -54,6 +54,7 @@ export default {
         day: '2-digit'
       },
       bugs: computed(() => AppState.bugs),
+      sort: computed(() => AppState.sort),
       account: computed(() => AppState.account)
     }
   }
