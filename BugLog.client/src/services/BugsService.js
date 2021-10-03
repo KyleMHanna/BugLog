@@ -3,12 +3,11 @@ import { Bug } from '../Models/Bug.js'
 // import { logger } from '../utils/Logger.js'
 import { api } from './AxiosService.js'
 import { router } from '../router'
-import { convertToQuery } from '../utils/Query'
+// import { convertToQuery } from '../utils/Query'
 
 class BugsService {
-  async getBugs(query = {}) {
-    AppState.bugs = []
-    const res = await api.get('api/bugs' + convertToQuery(query))
+  async getBugs(query = '') {
+    const res = await api.get('api/bugs' + query)
     AppState.bugs = res.data.map(b => new Bug(b))
     AppState.currentBug = new Bug(res.data)
   }
@@ -24,10 +23,9 @@ class BugsService {
   }
 
   // TODO - make sure this is functioning properly
-  async createBug(bugId) {
-    const res = await api.post('api/bugs', bugId)
-    this.getAllBugs()
-    AppState.bugs.push(new Bug(res.data))
+  async createBug(bug) {
+    const res = await api.post('api/bugs', bug)
+    AppState.bug.push(new Bug(res.data))
     router.push({ name: 'BugDetails', params: { bugId: res.data.id } })
   }
 

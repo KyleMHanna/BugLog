@@ -1,37 +1,41 @@
 <template>
-  <div class="container-fluid">
-    <div class="row px-0">
-      <div class="col-md-3 elevation-5 p-3  shadow-lg">
-        <router-link :to="{name: 'BugDetails', params: {bugId: bug.id }}" :title="bug.title">
-          <h3 class="text-center">
-            {{ bug.title }}
-          </h3>
-        </router-link>
-      </div>
-      <div class="col-md-3 elevation-5 p-3  shadow-lg">
-        <ul class="card-text text-style text-center ">
-          {{ bug.description }}
-        </ul>
-      </div>
+  <div class="bugcard" v-if="(sort.order == 'closed' && bug.closed) || (sort.order == 'active' && !bug.closed) || (sort.order == 'all' && bug.priority) || (sort.order == 'update' && bug.updatedAt)">
+    <div class="col-md-12 elevation-5 shadow-lg">
+      <div class="container-fluid">
+        <div class="row px-0">
+          <div class="col-md-3 elevation-5 p-3  shadow-lg">
+            <router-link :to="{name: 'BugDetails', params: {bugId: bug.id }}" :title="bug.title">
+              <h3 class="text-center">
+                {{ bug.title }}
+              </h3>
+            </router-link>
+          </div>
+          <div class="col-md-3 elevation-5 p-3  shadow-lg">
+            <ul class="card-text text-style text-center ">
+              {{ bug.description }}
+            </ul>
+          </div>
 
-      <!-- Bug priority level -->
-      <div class="col-md-3 elevation-5 p-3  shadow-lg ">
-        <p class="card-text text-style text-center">
-          {{ bug.priority }}
-          <span>
-            Closed:     {{ new Date(bug.updatedAt).toLocaleString('en',date) }}
-          </span>
-        </p>
-      </div>
+          <!-- Bug priority level -->
+          <div class="col-md-3 elevation-5 p-3  shadow-lg ">
+            <p class="card-text text-style text-center">
+              {{ bug.priority }}
+              <span>
+                Closed:     {{ new Date(bug.updatedAt).toLocaleString('en',date) }}
+              </span>
+            </p>
+          </div>
 
-      <!-- Bug Status oopen or closed -->
-      <div class="col-md-3 elevation-5 p-3  shadow-lg ">
-        <div class="text-center selectable" v-if="bug.closed == true">
-          <i class="mdi mdi-circle mdi-48px text-success "></i>
-          <span> {{ bug.closed }}</span>
-        </div>
-        <div class="text-center selectable" v-else>
-          <i class="mdi mdi-circle mdi-48px  text-danger"></i>
+          <!-- Bug Status oopen or closed -->
+          <div class="col-md-3 elevation-5 p-3  shadow-lg ">
+            <div class="text-center selectable" v-if="bug.closed == true">
+              <i class="mdi mdi-circle mdi-48px text-success "></i>
+              <span> {{ bug.closed }}</span>
+            </div>
+            <div class="text-center selectable" v-else>
+              <i class="mdi mdi-circle mdi-48px  text-danger"></i>
+            </div>
+          </div>
         </div>
       </div>
     </div>

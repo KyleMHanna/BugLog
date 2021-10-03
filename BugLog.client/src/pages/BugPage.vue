@@ -26,7 +26,12 @@
             Priorty
           </div>
           <div class="col-md-3 card-header text-center">
-            open/closed
+            <button class="btn-btn bg-success text-dark rounded" @click="order('active')">
+              Open Bugs
+            </button>
+            <button class="btn-btn bg-danger text-dark rounded shadow" @click="order('closed')">
+              Closed Bugs
+            </button>
           </div>
         </div>
       </div>
@@ -71,6 +76,9 @@ export default {
       bugs: computed(() => AppState.bugs.sort(scoreSorter)),
       toggleAscending() {
         ascending.value = !ascending.value
+      },
+      order(status) {
+        AppState.sort.order = status
       }
     }
   }

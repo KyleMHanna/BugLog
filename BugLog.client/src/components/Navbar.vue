@@ -4,8 +4,9 @@
       <div class="d-flex flex-column align-items-center">
         <img
           alt="logo"
-          src="../assets/img/cw-logo.png"
-          height="45"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMaV2OWz4v0rztm1vw-WQhwr1BGxVDWX1qUiFhdHkZtBwLIBr6zKGX9UdEi7fACDCid2g&usqp=CAU"
+          height="60"
+          width="60"
         />
       </div>
     </router-link>
@@ -22,10 +23,22 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
-        <li>
+        <!-- <li>
           <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
             About
           </router-link>
+        </li> -->
+        <li>
+          <router-link :to="{ name: 'Account' }">
+            <div class="list-group-item hoverable">
+              Account
+            </div>
+          </router-link>
+        </li>
+        <li>
+          <div class="list-group-item hoverable" data-bs-toggle="modal" data-bs-target="#bug-form">
+            Add Bug
+          </div>
         </li>
       </ul>
       <span class="navbar-text">
@@ -73,6 +86,14 @@
       </span>
     </div>
   </nav>
+  <Modal id="bug-form">
+    <template #modal-title>
+      Add a Bug
+    </template>
+    <template #modal-body>
+      <BugForm />
+    </template>
+  </Modal>
 </template>
 
 <script>
