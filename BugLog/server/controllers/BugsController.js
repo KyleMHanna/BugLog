@@ -75,10 +75,11 @@ export class BugsController extends BaseController {
 
   async deleteBug(req, res, next) {
     try {
-      const bug = await bugsService.closeBug(req.params.bugId, req.params.userId)
+      const bug = await bugsService.closeBug(req.params.bugId, req.userInfo.id)
       res.send(bug)
     } catch (error) {
-
+      next(error)
+      logger.error('deleteBug error on bugscontroller', error)
     }
   }
 }
