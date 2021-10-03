@@ -26,12 +26,12 @@
 
       <!-- Bug Status oopen or closed -->
       <div class="col-md-3 elevation-5 p-3  shadow-lg ">
-        <div class="text-center" v-if="bug.closed == true">
-          <i class="mdi mdi-circle mdi-48px text-success selectable"></i>
+        <div class="text-center selectable" v-if="bug.closed == true">
+          <i class="mdi mdi-circle mdi-48px text-success "></i>
           <span> {{ bug.closed }}</span>
         </div>
-        <div class="text-center" v-else>
-          <i class="mdi mdi-circle mdi-48px selectable text-danger"></i>
+        <div class="text-center selectable" v-else>
+          <i class="mdi mdi-circle mdi-48px  text-danger"></i>
         </div>
       </div>
     </div>
@@ -41,7 +41,7 @@
 <script>
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState.js'
-import { Bug } from '../Models/Bug.js'
+// import { Bug } from '../Models/Bug.js'
 export default {
   props: {
     bug: { type: Object, required: true }

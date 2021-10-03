@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
-    <div class="row result-controls" @contextmenu.prevent v-if="bugs.Priorty">
-    </div>
+    <!-- <div class="row result-controls" @contextmenu.prevent v-if="bugs.Priorty">
+    </div> -->
     <div class="row">
       <button class="btn-btn bg-primary text-light selectable mt-3" data-bs-toggle="modal" data-bs-target="#bug-form">
         Add a Bug
