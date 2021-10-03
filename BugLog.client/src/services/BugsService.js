@@ -3,11 +3,12 @@ import { Bug } from '../Models/Bug.js'
 import { logger } from '../utils/Logger.js'
 import { api } from './AxiosService.js'
 import { router } from '../router'
+import { convertToQuery } from '../utils/Query'
 
 class BugsService {
-  async getBugs(query = '') {
+  async getBugs(query = {}) {
     AppState.bugs = []
-    const res = await api.get('api/bugs' + query)
+    const res = await api.get('api/bugs' + convertToQuery(query))
     AppState.bugs = res.data.map(b => new Bug(b))
   }
 
@@ -23,15 +24,13 @@ class BugsService {
     AppState.bug = new Bug(bugId)
   }
 
+  // TODO - make sure this is functioning properly
   async createBug(bugId) {
     const res = await api.post('api/bugs', bugId)
     this.getAllBugs()
     AppState.bugs.push(new Bug(res.data))
     router.push({ name: 'BugDetails', params: { bugId: res.data.id } })
   }
-
-  // FIXME -
-  // router.push({ name: 'BugDetailsPage', params: { bugId: res.data.id } })
 
   async filterBugs() {
     AppState.bugs = AppState.bugs.filter(b => b.closed === false).reverse()
