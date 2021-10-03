@@ -1,5 +1,7 @@
 <template>
   <div class="container-fluid">
+    <div class="row result-controls" @contextmenu.prevent v-if="bugs.Priorty">
+    </div>
     <div class="row">
       <button class="btn-btn bg-primary text-light selectable mt-3" data-bs-toggle="modal" data-bs-target="#bug-form">
         Add a Bug
@@ -13,6 +15,13 @@
             Description
           </div>
           <div class="col-md-3 card-header text-center">
+            <!-- This is the Priorty Sorter -->
+            <div class="col bg-dark">
+              <button class="btn selectable me-2 text-white" @click="toggleAscending">
+                <i class="mdi mdi-arrow-up" v-if="ascending"></i>
+                <i class="mdi mdi-arrow-down" v-else></i>
+              </button>
+            </div>
             Priorty
           </div>
           <div class="col-md-3 card-header text-center">
@@ -35,16 +44,27 @@
 </template>
 
 <script>
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed, onMounted, ref } from '@vue/runtime-core'
 import { bugsService } from '../services/BugsService.js'
 import { AppState } from '../AppState.js'
 export default {
   setup() {
+    const ascending = ref(true)
+    function scoreSorter(a, b) {
+      if (ascending.value) {
+        return b.score - a.score
+      }
+      return a.score - b.score
+    }
     onMounted(() => {
       bugsService.getBugs()
     })
     return {
-      bugs: computed(() => AppState.bugs)
+      ascending,
+      bugs: computed(() => AppState.bugs.sort(scoreSorter)),
+      toggleAscending() {
+        ascending.value = !ascending.value
+      }
     }
   }
 }

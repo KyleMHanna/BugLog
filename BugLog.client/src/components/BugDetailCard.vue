@@ -1,6 +1,10 @@
 <template>
   <div class="row">
-    <div class="col-12">
+    <div class="col-md-2">
+      <img :src="bug.creator.picture" class="rounded-circle image-fluid img-thumbnail img-height shadow">
+      <p>{{ bug.creator.name }}</p>
+    </div>
+    <div class="col-md-10">
       <div class="card">
         <div class="card-body ">
           <h5 class="card-title title-style">
@@ -19,8 +23,16 @@
 
 <script>
 export default {
-  setup() {
-    return {}
+  props: {
+    bug: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(props) {
+    return {
+
+    }
   }
 }
 </script>

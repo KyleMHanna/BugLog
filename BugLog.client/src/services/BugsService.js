@@ -13,7 +13,7 @@ class BugsService {
 
   async getAllBugs() {
     const res = await api.get('api/bugs')
-    AppState.bugs = res.data.reverse()
+    AppState.bugs = res.data
   }
 
   async getBugsById(bugId) {
@@ -23,17 +23,18 @@ class BugsService {
     AppState.bug = new Bug(bugId)
   }
 
-  async createBug(bug) {
-    const res = await api.post('api/bugs', bug)
-
+  async createBug(bugId) {
+    const res = await api.post('api/bugs', bugId)
+    this.getAllBugs()
     AppState.bugs.push(new Bug(res.data))
-
-  // FIXME -
-    // router.push({ name: 'BugDetailsPage', params: { bugId: res.data.id } })
+    router.push({ name: 'BugDetails', params: { bugId: res.data.id } })
   }
 
+  // FIXME -
+  // router.push({ name: 'BugDetailsPage', params: { bugId: res.data.id } })
+
   async filterBugs() {
-    AppState.bugs = AppState.bugs.filter(b => b.closed === false)
+    AppState.bugs = AppState.bugs.filter(b => b.closed === false).reverse()
   }
 }
 
