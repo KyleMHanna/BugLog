@@ -1,6 +1,13 @@
 <template>
   <div class="card">
     <div class="row text-center">
+      <div class="on-hover col-md-1 " v-if="note.creatorId === account.id">
+        <button class="btn text-dark lighten-20 selectable" @click="remove(note)">
+          <b>
+            Remove note
+          </b>
+        </button>
+      </div>
       <div class="col-md-2 p-2">
         <!-- FIXME -->
         <!-- <img :src="note.creator.picture" :alt="note.creator.name" :title="note.creator.name"> -->
@@ -25,6 +32,8 @@
 import { computed } from '@vue/runtime-core'
 // import { notesService } from '../services/NotesService'
 import { AppState } from '../AppState.js'
+import Pop from '../utils/Pop.js'
+import { notesService } from '../services/NotesService.js'
 export default {
   props: {
     note: {
@@ -35,12 +44,18 @@ export default {
   setup(props) {
     return {
       notes: computed(() => AppState.notes),
-
+      profile: computed(() => AppState.profile),
       account: computed(() => AppState.account),
-      bugs: computed(() => AppState.bugs)
-      // async deleteNote(id) {
-      //   await notesService.delete(id)
-      // }
+      bugs: computed(() => AppState.bugs),
+      async remove(note) {
+        try {
+          const yes = await Pop.confirm('Are you really sure?')
+          if (!yes) { return }
+          await notesService.deleteNote(note.id)
+        } catch (e) {
+          Pop.toast(e.message)
+        }
+      }
     }
   }
 
