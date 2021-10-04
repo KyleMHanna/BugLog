@@ -33,26 +33,27 @@
               Closed:     {{ new Date(currentBug.updatedAt).toLocaleString() }}
             </span>
           </p>
-          <div class="text-center selectable" v-if="currentBug.closed == true">
+          <div class="text-center " v-if="currentBug.closed == true">
             <i class="mdi mdi-circle mdi-48px text-success "></i>
           </div>
-          <div class="text-center selectable" v-else>
+          <div class="text-center " v-else>
             <i class="mdi mdi-circle mdi-48px  text-danger"></i>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <NoteCard v-for="n in notes" :key="n.id" :note="n" />
 
-  <Modal id="note-form">
-    <template #modal-title>
-      Add a note
-    </template>
-    <template #modal-body>
-      <NoteForm />
-    </template>
-  </Modal>
+    <NoteCard v-for="note in notes" :key="note.id" :note="note" />
+
+    <Modal id="note-form">
+      <template #modal-title>
+        Add a note
+      </template>
+      <template #modal-body>
+        <NoteForm />
+      </template>
+    </Modal>
+  </div>
 </template>
 
 <script>
@@ -84,8 +85,9 @@ export default {
       currentBug: computed(() => AppState.currentBug),
       bugs: computed(() => AppState.bugs),
       notes: computed(() => AppState.notes),
+      note: computed(() => AppState.note),
       async getNotes() {
-        await notesService.getNotesByBugId(props.bug.id)
+        await notesService.getNotesById(props.bugId)
       }
     }
   }

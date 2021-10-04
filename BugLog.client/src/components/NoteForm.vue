@@ -29,7 +29,9 @@ import { Modal } from 'bootstrap'
 import { Bug } from '../Models/Bug.js'
 
 import { ref } from '@vue/reactivity'
-// import { useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
+import { computed } from '@vue/runtime-core'
+import { AppState } from '../AppState.js'
 
 export default {
   props: {
@@ -37,15 +39,19 @@ export default {
   },
   setup(props) {
     const editable = ref({})
-    // const route = useRoute()
+    const route = useRoute()
     return {
       editable,
-
+      route,
+      notes: computed(() => AppState.notes),
+      bugs: computed(() => AppState.bugs),
+      currentBug: computed(() => AppState.currentBug),
       async createNote() {
         try {
-          await notesService.createNote(props.bug.id, editable.value)
+          editable.value.bugId = props.bugId
+          editable.value.bugId = route.params.bugId
+          await notesService.createNote(editable.value, props.bugId)
           editable.value = {}
-          Pop.toast('Added', 'success')
           const modal = Modal.getInstance(document.getElementById('note-form'))
           modal.hide()
         } catch (error) {
