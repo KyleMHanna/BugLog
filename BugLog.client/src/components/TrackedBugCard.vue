@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row" v-if="trackedbugs">
     <div class="col-md-2">
       <img :src="bug.creator.picture" class="rounded-circle image-fluid img-thumbnail img-height shadow">
       <p>{{ bug.creator.name }}</p>

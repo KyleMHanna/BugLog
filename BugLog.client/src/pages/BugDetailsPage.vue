@@ -2,6 +2,9 @@
   <button class="btn-btn bg-success  selectable mt-3" data-bs-toggle="modal" data-bs-target="#note-form">
     <i class="mdi mdi-plus">Note</i>
   </button>
+  <button class="btn-btn bg-success  selectable mt-3" data-bs-toggle="modal" data-bs-target="#currentbug-form" v-if="currentBug.closed ==true">
+    <i class="mdi mdi-bug">Edit Bug</i>
+  </button>
   <div class="BugDetailsPage container-fluid" v-if="currentBug.creator">
     <div class="row my-5 align-content-center">
       <div class="col-12 d-flex justify-content-center">
@@ -41,12 +44,23 @@
           <div class="text-center " v-else>
             <i class="mdi mdi-circle mdi-48px  text-danger"></i>
           </div>
+          <!-- <button @change="open(currentBug.closed)">
+            open
+          </button> -->
         </div>
       </div>
     </div>
 
     <NoteCard v-for="note in notes" :key="note.id" :note="note" />
 
+    <Modal id="currentbug-form">
+      <template #modal-title>
+        Edit Bug
+      </template>
+      <template #modal-body>
+        <CurrentBugForm />
+      </template>
+    </Modal>
     <Modal id="note-form">
       <template #modal-title>
         Add a note
@@ -100,11 +114,13 @@ export default {
       profile: computed(() => AppState.profile),
       currentBug: computed(() => AppState.currentBug),
       bugs: computed(() => AppState.bugs),
+      bug: computed(() => AppState.bug),
       notes: computed(() => AppState.notes),
       note: computed(() => AppState.note)
-      // async getNotes() {
-      //   await notesService.getNotesById(props.bugId)
-      // }
+      //   async open() {
+      //     await bugsService.toggleClosed(route.params.bugId)
+      //   }
+
     }
   }
 }

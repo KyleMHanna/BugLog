@@ -1,6 +1,6 @@
 import { AppState } from '../AppState.js'
 import { Bug } from '../Models/Bug.js'
-// import { logger } from '../utils/Logger.js'
+import { logger } from '../utils/Logger.js'
 import { api } from './AxiosService.js'
 import { router } from '../router'
 // import { convertToQuery } from '../utils/Query'
@@ -30,14 +30,26 @@ class BugsService {
     router.push({ name: 'BugDetails', params: { bugId: res.data.id } })
   }
 
-  async editBug(bug) {
-    const res = await api.put(`api/bugs/${bug.id}`, bug)
+  async editBug(editBug, bugId) {
+    const res = await api.put(`api/bugs/${bugId}`, editBug)
     AppState.bug = new Bug(res.data)
   }
 
   async filterBugs() {
     AppState.bugs = AppState.bugs.filter(b => b.closed === false).reverse()
   }
+
+  // async toggleClosed(bugId, id) {
+  //   const bug = AppState.bugs.filter(t => t.id === bugId)
+  //   const BugCheck = bug[0]
+  //   if (BugCheck.closed === false) {
+  //     BugCheck.closed = true
+  //   } else {
+  //     BugCheck.closed = false
+  //   }
+  //   const res = await api.put(`api/bugs/${bugId}`)
+  //   logger.log('bug open or closed after put', res)
+  // }
 }
 
 export const bugsService = new BugsService()
