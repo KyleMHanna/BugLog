@@ -44,6 +44,7 @@ export default {
       editable,
       route,
       notes: computed(() => AppState.notes),
+      // note: computed(() => AppState.note),
       bugs: computed(() => AppState.bugs),
       currentBug: computed(() => AppState.currentBug),
       async createNote() {
