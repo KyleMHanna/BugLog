@@ -3,6 +3,7 @@ import { Bug } from '../Models/Bug.js'
 import { logger } from '../utils/Logger.js'
 import { api } from './AxiosService.js'
 import { router } from '../router'
+import { TrackedBug } from '../Models/TrackedBug.js'
 // import { convertToQuery } from '../utils/Query'
 // import { Pop } from '../utils/Pop.js'
 
@@ -30,6 +31,12 @@ class BugsService {
     router.push({ name: 'BugDetails', params: { bugId: res.data.id } })
   }
 
+  async createTrackedBug(bug) {
+    const res = await api.post('api/trackedbugs', bug)
+    AppState.trackedbugs.push(new TrackedBug(res.data))
+    logger.res(res)
+  }
+
   async editBug(editBug, bugId) {
     const res = await api.put(`api/bugs/${bugId}`, editBug)
     AppState.bug = new Bug(res.data)
@@ -39,17 +46,18 @@ class BugsService {
     AppState.bugs = AppState.bugs.filter(b => b.closed === false).reverse()
   }
 
-  // async toggleClosed(bugId, id) {
-  //   const bug = AppState.bugs.filter(t => t.id === bugId)
-  //   const BugCheck = bug[0]
-  //   if (BugCheck.closed === false) {
-  //     BugCheck.closed = true
-  //   } else {
-  //     BugCheck.closed = false
-  //   }
-  //   const res = await api.put(`api/bugs/${bugId}`)
-  //   logger.log('bug open or closed after put', res)
-  // }
+  async toggleClosed(bugId, id) {
+    const bug = AppState.bugs.filter(t => t.id === bugId)
+    const BugCheck = bug[0]
+    if (BugCheck.closed === true) {
+      BugCheck.closed = false
+    } else {
+      BugCheck.closed = false
+    }
+    const res = await api.put(`api/bugs/${bugId}`)
+    AppState.currentBug = new Bug(res.data)
+    logger.log('bug open or closed after put', res)
+  }
 }
 
 export const bugsService = new BugsService()
