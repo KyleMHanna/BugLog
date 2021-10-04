@@ -1,6 +1,6 @@
 import { dbContext } from '../db/DbContext.js'
-import { Forbidden } from '../utils/Errors.js'
-import { bugsService } from '../services/BugsService.js'
+// import { Forbidden } from '../utils/Errors.js'
+// import { bugsService } from '../services/BugsService.js'
 // import { logger } from '../utils/Logger.js'
 
 class NoteService {
@@ -15,8 +15,9 @@ class NoteService {
   async createNote(noteData) {
     const note = await dbContext.Notes.create(noteData)
     await dbContext.Notes.findById(note.id)
-    await note.populate('creator').populate
-    await note.populate('bug').populate
+    await note.populate('creator')
+    // await note.populate('bug')
+    // FIXME - maybe put a virtual creator for "bug" on the model
 
     return note
   }

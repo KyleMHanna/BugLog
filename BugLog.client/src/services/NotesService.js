@@ -35,7 +35,8 @@ class NotesService {
   async createNote(newNote) {
     try {
       const res = await api.post('api/notes', newNote)
-      AppState.notes.push(res.data)
+
+      AppState.notes.push(new Note(res.data))
       Pop.toast('success')
     } catch (error) {
       logger.log('notes Service error', error)
@@ -48,7 +49,7 @@ class NotesService {
         const res = await api.delete('api/notes/' + noteId)
         Pop.toast(res.data.messsage, 'success')
 
-        AppState.notes = AppState.notes.filter(n => n.noteId !== noteId)
+        AppState.notes = AppState.notes.filter(n => n.id !== noteId)
       } catch (error) {
         Pop.toast(error)
       }
