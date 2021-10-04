@@ -9,18 +9,22 @@
       <div class="containter-fluid">
         <div class="row">
           <div class="col-md-3 card-header text-center">
-            Name
+            <h5>
+              Name
+            </h5>
           </div>
           <div class="col-md-3 card-header text-center">
-            Description
+            <h5>
+              Description
+            </h5>
           </div>
 
           <!-- priority sort functoinality -->
           <div class="col-md-3 card-header text-center">
-            <div class="col bg-primary">
+            <div class="">
               <button class="btn selectable me-2 text-white" @click="toggleAscending">
-                <i class="mdi mdi-arrow-up" v-if="ascending"></i>
-                <i class="mdi mdi-arrow-down" v-else></i>
+                <i class="mdi mdi-arrow-up text-success" v-if="ascending"></i>
+                <i class="mdi mdi-arrow-down text-danger" v-else></i>
               </button>
             </div>
             <!-- <button class="btn-btn bg-dark text-light rounded shadow" @click="order('all')">
@@ -28,10 +32,11 @@
             </button> -->
           </div>
           <div class="col-md-3 card-header text-center p-2">
-            <button class="btn-outline-danger  text-dark p-1 " @click="order('active')">
+            <button class="btn-outline-danger  text-dark p-2 " @click="order('active')">
               Closed
             </button>
-            <button class="btn-outline-success  text-dark p-1 " @click="order('closed')">
+
+            <button class="btn-outline-success  text-dark p-2 " @click="order('closed')">
               Open
             </button>
           </div>

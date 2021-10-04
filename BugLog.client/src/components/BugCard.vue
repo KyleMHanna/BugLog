@@ -1,6 +1,6 @@
 <template>
   <div class="bugcard" v-if="(sort.order == 'closed' && bug.closed) || (sort.order == 'active' && !bug.closed) || (sort.order == 'all' && bug.priority) || (sort.order == 'update' && bug.updatedAt)">
-    <div class="col-md-12  card ">
+    <div class="col-md-12  card-header ">
       <div class="container-fluid">
         <div class="row ">
           <div class="col-md-3  p-3  ">

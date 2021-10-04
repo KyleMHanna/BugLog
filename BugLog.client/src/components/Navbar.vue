@@ -31,7 +31,7 @@
         <li>
           <router-link :to="{ name: 'Account' }">
             <div class="list-group-item hoverable">
-              Account
+              Tracked bugs
             </div>
           </router-link>
         </li>
