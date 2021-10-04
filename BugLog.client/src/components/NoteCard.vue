@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" v-if="note.creator">
     <div class="row text-center">
       <div class="on-hover col-md-1 " v-if="note.creatorId === account.id">
         <button class="btn text-dark lighten-20 selectable" @click="remove(note)">
@@ -8,8 +8,7 @@
           </b>
         </button>
       </div>
-      <div class="col-md-2 p-2">
-        <!-- FIXME -->
+      <div class="col-md-1 p-2 ">
         <img :src="note.creator.picture" :alt="note.creator.name" :title="note.creator.name">
       </div>
       <div class="col-md-8 text-center">

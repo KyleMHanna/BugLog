@@ -2,17 +2,19 @@
   <button class="btn-btn bg-success  selectable mt-3" data-bs-toggle="modal" data-bs-target="#note-form">
     <i class="mdi mdi-plus">Note</i>
   </button>
-  <div class="BugDetailsPage container-fluid">
-    <div class="row my-5 align-content-center" v-if="currentBug">
+  <div class="BugDetailsPage container-fluid" v-if="currentBug.creator">
+    <div class="row my-5 align-content-center">
       <div class="col-12 d-flex justify-content-center">
         <!-- FIXME -  -->
         <!-- <div class="on-hover text-end" style="right: 1rem; top: 1rem" v-if="account.id == currentBug.creatorId">
           <i class="mdi mdi-delete text-danger f-20 selectable" @click="deleteBug()"></i>
         </div> -->
-        <!-- <div class="col-md-1">
-          <img :src="currentBug.creator.picture" class="rounded-circle image-fluid img-thumbnail img-height shadow">
-          <p>{{ currentBug.creator.name }}</p>
-        </div> -->
+        <div v-if="currentBug.creator">
+          {{ currentBug.creator.name }}
+          <div class="col-md-2 p-2 " v-if="currentBug.creator.picture">
+            <img :src="currentBug.creator.picture" :alt="currentBug.creator.name" :title="currentBug.creator.name">
+          </div>
+        </div>
         <div class="d-flex  p-2">
           <h1 class="my-auto">
             {{ currentBug.title }}
