@@ -17,13 +17,13 @@
         </div>
       </div>
     </div>
-    <div class="row justify-content-center rounded">
-      <div class=" bg-light p-2 shadow rounded text-center">
+    <div class="row justify-content-center">
+      <div class=" p-2  text-center">
         {{ currentBug.description }}
       </div>
       <div>
-        <div class=" elevation-5 p-3  shadow-lg ">
-          <p class="card-text text-style text-center">
+        <div class="  p-3   ">
+          <p class="text-center">
             Priority level {{ currentBug.priority }}
             <br>
             <span>
@@ -32,7 +32,6 @@
           </p>
           <div class="text-center selectable" v-if="currentBug.closed == true">
             <i class="mdi mdi-circle mdi-48px text-success "></i>
-            <span> {{ currentBug.closed }}</span>
           </div>
           <div class="text-center selectable" v-else>
             <i class="mdi mdi-circle mdi-48px  text-danger"></i>

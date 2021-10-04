@@ -1,23 +1,23 @@
 <template>
   <div class="bugcard" v-if="(sort.order == 'closed' && bug.closed) || (sort.order == 'active' && !bug.closed) || (sort.order == 'all' && bug.priority) || (sort.order == 'update' && bug.updatedAt)">
-    <div class="col-md-12 elevation-5 shadow-lg">
+    <div class="col-md-12  card ">
       <div class="container-fluid">
-        <div class="row px-0">
-          <div class="col-md-3 elevation-5 p-3  shadow-lg">
+        <div class="row ">
+          <div class="col-md-3  p-3  ">
             <router-link :to="{name: 'BugDetails', params: {bugId: bug.id }}" :title="bug.title">
               <h3 class="text-center">
                 {{ bug.title }}
               </h3>
             </router-link>
           </div>
-          <div class="col-md-3 elevation-5 p-3  shadow-lg">
+          <div class="col-md-3  p-3  ">
             <h3 class="card-text text-style text-center ">
               {{ bug.description }}
             </h3>
           </div>
 
           <!-- Bug priority level -->
-          <div class="col-md-3 elevation-5 p-3  shadow-lg text-center ">
+          <div class="col-md-3  p-3  text-center ">
             <h3>{{ bug.priority }}</h3>
             <span>
               Last Updated:    {{ new Date(bug.updatedAt).toLocaleString('en',date) }}
@@ -25,7 +25,7 @@
           </div>
 
           <!-- Bug Status oopen or closed -->
-          <div class="col-md-3 elevation-5 p-3  shadow-lg ">
+          <div class="col-md-3  p-3  ">
             <div class="text-center selectable" v-if="bug.closed == true">
               <i class="mdi mdi-circle mdi-48px text-success "></i>
             </div>
