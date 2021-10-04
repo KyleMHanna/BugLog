@@ -43,7 +43,7 @@ export default {
 
       async createNote() {
         try {
-          await notesService.createNote(editable.value, props.bugId)
+          await notesService.createNote(props.bug.id, editable.value)
           editable.value = {}
           Pop.toast('Added', 'success')
           const modal = Modal.getInstance(document.getElementById('note-form'))

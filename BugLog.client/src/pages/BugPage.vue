@@ -17,7 +17,7 @@
 
           <!-- priority sort functoinality -->
           <div class="col-md-3 card-header text-center">
-            <div class="col bg-dark">
+            <div class="col bg-primary">
               <button class="btn selectable me-2 text-white" @click="toggleAscending">
                 <i class="mdi mdi-arrow-up" v-if="ascending"></i>
                 <i class="mdi mdi-arrow-down" v-else></i>
@@ -27,11 +27,11 @@
               Priority
             </button> -->
           </div>
-          <div class="col-md-3 card-header text-center">
-            <button class="btn-btn bg-danger text-dark " @click="order('active')">
+          <div class="col-md-3 card-header text-center p-2">
+            <button class="btn-outline-danger  text-dark p-1 " @click="order('active')">
               Closed
             </button>
-            <button class="btn-btn bg-success text-dark " @click="order('closed')">
+            <button class="btn-outline-success  text-dark p-1 " @click="order('closed')">
               Open
             </button>
           </div>

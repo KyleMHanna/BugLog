@@ -6,6 +6,9 @@
     <div class="row my-5 align-content-center" v-if="currentBug">
       <div class="col-12 d-flex justify-content-center">
         <!-- FIXME -  -->
+        <!-- <div class="on-hover text-end" style="right: 1rem; top: 1rem" v-if="account.id == currentBug.creatorId">
+          <i class="mdi mdi-delete text-danger f-20 selectable" @click="deleteBug()"></i>
+        </div> -->
         <!-- <div class="col-md-1">
           <img :src="currentBug.creator.picture" class="rounded-circle image-fluid img-thumbnail img-height shadow">
           <p>{{ currentBug.creator.name }}</p>
@@ -27,7 +30,7 @@
             Priority level {{ currentBug.priority }}
             <br>
             <span>
-              Closed:     {{ new Date(currentBug.updatedAt).toLocaleString('en',date) }}
+              Closed:     {{ new Date(currentBug.updatedAt).toLocaleString() }}
             </span>
           </p>
           <div class="text-center selectable" v-if="currentBug.closed == true">

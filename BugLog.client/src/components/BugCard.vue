@@ -35,10 +35,10 @@
           </div>
           <!-- Bug Status oopen or closed -->
           <div class="col-md-3  p-3  ">
-            <div class="text-center selectable" v-if="bug.closed == true">
+            <div class="text-center " v-if="bug.closed == true">
               <i class="mdi mdi-circle mdi-48px text-success "></i>
             </div>
-            <div class="text-center selectable" v-else>
+            <div class="text-center " v-else>
               <i class="mdi mdi-circle mdi-48px  text-danger"></i>
             </div>
           </div>
