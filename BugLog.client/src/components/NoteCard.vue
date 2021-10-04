@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="card-text text-center ">
-      <small class="text-dark">Created By: {{ note.creator }}</small>
+      <small class="text-dark">Created By: {{ note.creator.name }}</small>
       <br>
       <small>{{ Date(note.createdAt) }}</small>
     </div>

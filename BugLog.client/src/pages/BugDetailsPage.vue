@@ -74,6 +74,8 @@ export default {
     onMounted(async() => {
       try {
         await bugsService.getBugById(route.params.bugId)
+        // await notesService.getNotesById(route.params.bugId)
+        await notesService.getBugNotes(route.params.bugId)
       } catch (error) {
         Pop.toast(error, 'error')
       }
@@ -85,10 +87,10 @@ export default {
       currentBug: computed(() => AppState.currentBug),
       bugs: computed(() => AppState.bugs),
       notes: computed(() => AppState.notes),
-      note: computed(() => AppState.note),
-      async getNotes() {
-        await notesService.getNotesById(props.bugId)
-      }
+      note: computed(() => AppState.note)
+      // async getNotes() {
+      //   await notesService.getNotesById(props.bugId)
+      // }
     }
   }
 }
