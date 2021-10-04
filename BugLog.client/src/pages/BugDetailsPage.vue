@@ -63,13 +63,13 @@ import { bugsService } from '../services/BugsService.js'
 import { AppState } from '../AppState.js'
 import Pop from '../utils/Pop.js'
 import { notesService } from '../services/NotesService.js'
-import { Bug } from '../Models/Bug.js'
+// import { Bug } from '../Models/Bug.js'
 
 export default {
-  props: {
-    bug: { type: Bug, required: true }
-  },
-  setup(props) {
+  // props: {
+  //   bug: { type: Bug, required: true }
+  // },
+  setup() {
     const route = useRoute()
     onMounted(async() => {
       try {
