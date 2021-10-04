@@ -9,9 +9,9 @@ export class BugsController extends BaseController {
     this.router
       .get('', this.getBugs)
       .get('/:bugId', this.getBug)
+      .get('/:bugId/notes', this.getNotesByBugId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createBug)
-      .get('/:bugId/notes', this.getNotesByBugId)
       .get('/:bugId/trackedbugs', this.getTrackedBugs)
       .put('/:bugId', this.editBug)
       .delete('/:bugId', this.deleteBug)

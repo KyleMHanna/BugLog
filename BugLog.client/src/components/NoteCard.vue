@@ -10,7 +10,7 @@
       </div>
       <div class="col-md-2 p-2">
         <!-- FIXME -->
-        <!-- <img :src="note.creator.picture" :alt="note.creator.name" :title="note.creator.name"> -->
+        <img :src="note.creator.picture" :alt="note.creator.name" :title="note.creator.name">
       </div>
       <div class="col-md-8 text-center">
         <div class="card-body  text-center ">
@@ -48,18 +48,12 @@ export default {
       account: computed(() => AppState.account),
       bugs: computed(() => AppState.bugs),
       async remove(note) {
-        try {
-          const yes = await Pop.confirm('Are you really sure?')
-          if (!yes) { return }
-          await notesService.deleteNote(note.id)
-        } catch (e) {
-          Pop.toast(e.message)
-        }
+        await notesService.deleteNote(note.id)
       }
     }
   }
-
 }
+
 </script>
 
 <style>
