@@ -30,6 +30,11 @@ class BugsService {
     router.push({ name: 'BugDetails', params: { bugId: res.data.id } })
   }
 
+  async editBug(bug) {
+    const res = await api.put(`api/bugs/${bug.id}`, bug)
+    AppState.bug = new Bug(res.data)
+  }
+
   async filterBugs() {
     AppState.bugs = AppState.bugs.filter(b => b.closed === false).reverse()
   }

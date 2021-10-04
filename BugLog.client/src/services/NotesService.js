@@ -36,7 +36,7 @@ class NotesService {
     try {
       const res = await api.post('api/notes', newNote)
       AppState.notes.push(res.data)
-      // Pop.toast('success') FIXME -
+      Pop.toast('success')
     } catch (error) {
       logger.log('notes Service error', error)
     }

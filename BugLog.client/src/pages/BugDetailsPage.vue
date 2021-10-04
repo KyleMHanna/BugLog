@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed, onMounted, watchEffect } from '@vue/runtime-core'
 import { useRoute } from 'vue-router'
 import { bugsService } from '../services/BugsService.js'
 import { AppState } from '../AppState.js'
@@ -80,6 +80,18 @@ export default {
         await notesService.getBugNotes(route.params.bugId)
       } catch (error) {
         Pop.toast(error, 'error')
+      }
+    })
+    async function getBugNotes() {
+      if (route.params.bugId) {
+        await bugsService.getBugById(route.params.bugId)
+      }
+    }
+    watchEffect(async() => {
+      if (route.params.id) {
+        await notesService.getBugNotes(route.params.id)
+        getBugNotes()
+        this.getNotesById()
       }
     })
     return {
