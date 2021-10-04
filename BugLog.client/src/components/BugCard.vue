@@ -18,12 +18,21 @@
 
           <!-- Bug priority level -->
           <div class="col-md-3  p-3  text-center ">
-            <h3>{{ bug.priority }}</h3>
+            <div class="text-success " v-if="bug.priority <= 2">
+              <h3 class="">
+                {{ bug.priority }}
+              </h3>
+            </div>
+            <div class="text-warning" v-if="bug.priority == 3">
+              <h3>{{ bug.priority }}</h3>
+            </div>
+            <div class="text-danger" v-if="bug.priority >= 4">
+              <h3>{{ bug.priority }}</h3>
+            </div>
             <span>
               Last Updated:    {{ new Date(bug.updatedAt).toLocaleString('en',date) }}
             </span>
           </div>
-
           <!-- Bug Status oopen or closed -->
           <div class="col-md-3  p-3  ">
             <div class="text-center selectable" v-if="bug.closed == true">

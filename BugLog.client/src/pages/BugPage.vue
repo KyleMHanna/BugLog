@@ -23,16 +23,16 @@
                 <i class="mdi mdi-arrow-down" v-else></i>
               </button>
             </div>
-            <button class="btn-btn bg-dark text-light rounded shadow" @click="order('all')">
+            <!-- <button class="btn-btn bg-dark text-light rounded shadow" @click="order('all')">
               Priority
-            </button>
+            </button> -->
           </div>
           <div class="col-md-3 card-header text-center">
-            <button class="btn-btn bg-success text-dark rounded" @click="order('active')">
-              Open Bugs
+            <button class="btn-btn bg-danger text-dark " @click="order('active')">
+              Closed
             </button>
-            <button class="btn-btn bg-danger text-dark rounded shadow" @click="order('closed')">
-              Closed Bugs
+            <button class="btn-btn bg-success text-dark " @click="order('closed')">
+              Open
             </button>
           </div>
         </div>
@@ -59,23 +59,31 @@ export default {
   setup() {
     const account = computed(() => AppState.account)
     const ascending = ref(true)
+    const lowFilter = ref(false)
+    function lowFilterFunction(b) {
+      if (lowFilter.value) {
+        return b.priority > 2
+      }
+      return true
+    }
     function scoreSorter(a, b) {
       if (ascending.value) {
-        return b.score - a.score
+        return b.priority - a.priority
       }
-      return a.score - b.score
+      return a.priority - b.priority
     }
     onMounted(() => {
       bugsService.getAllBugs()
     })
     return {
       ascending,
+      lowFilter,
       account,
       bug: computed(() => AppState.bug),
       profile: computed(() => AppState.profile),
       sort: computed(() => AppState.sort),
       currentBug: computed(() => AppState.currentBug),
-      bugs: computed(() => AppState.bugs.sort(scoreSorter)),
+      bugs: computed(() => AppState.bugs.filter(lowFilterFunction).sort(scoreSorter)),
       toggleAscending() {
         ascending.value = !ascending.value
       },
