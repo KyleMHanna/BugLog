@@ -16,9 +16,9 @@
   <button class="btn-btn bg-danger  selectable mt-3" @click="close()" v-if="currentBug.closed==true">
     close
   </button>
-  <!-- <button class="btn-btn  selectable mt-3 btn-success" @click="close()" v-else>
+  <button class="btn-btn  selectable mt-3 btn-success" @click="close()" v-else>
     open
-  </button> -->
+  </button>
   <!-- FIXME -->
   <div class="BugDetailsPage container-fluid" v-if="currentBug.creator">
     <div class="row my-5 align-content-center">
@@ -92,18 +92,15 @@ import { bugsService } from '../services/BugsService.js'
 import { AppState } from '../AppState.js'
 import Pop from '../utils/Pop.js'
 import { notesService } from '../services/NotesService.js'
-// import { Bug } from '../Models/Bug.js'
 
 export default {
-  // props: {
-  //   bug: { type: Bug, required: true }
-  // },
+
   setup() {
     const route = useRoute()
     onMounted(async() => {
       try {
         await bugsService.getBugById(route.params.bugId)
-        // await notesService.getNotesById(route.params.bugId)
+
         await notesService.getBugNotes(route.params.bugId)
       } catch (error) {
         Pop.toast(error, 'error')

@@ -6,7 +6,7 @@
   </div>
   <div class="col-md-3  p-3  ">
     <h3 class="card-text text-style text-center ">
-      {{ trackedbugs.bugId.description }}
+      {{ trackedbugs.description }}
     </h3>
   </div>
 

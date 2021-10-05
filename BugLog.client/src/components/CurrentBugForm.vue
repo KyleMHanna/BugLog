@@ -54,13 +54,11 @@ import Pop from '../utils/Pop'
 import { Modal } from 'bootstrap'
 import { logger } from '../utils/Logger.js'
 import { bugsService } from '../services/BugsService.js'
-import { Bug } from '../Models/Bug.js'
+
 import { useRoute } from 'vue-router'
 export default {
-  props: {
-    bug: { type: Bug, required: true }
-  },
-  setup(props) {
+
+  setup() {
     const editable = ref({})
     const route = useRoute()
     return {
