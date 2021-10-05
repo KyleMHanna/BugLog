@@ -2,7 +2,7 @@
   <div class="card" v-if="note.creator">
     <div class="row text-center">
       <div class="on-hover" v-if="note.creatorId === account.id">
-        <button class="btn text-dark lighten-20 selectable" title="remove note" @click="remove(note)">
+        <button class="btn text-dark lighten-20 selectable" title="remove note" @click="remove(note.id)">
           Remove note
         </button>
       </div>
@@ -26,7 +26,7 @@
 import { computed } from '@vue/runtime-core'
 // import { notesService } from '../services/NotesService'
 import { AppState } from '../AppState.js'
-import Pop from '../utils/Pop.js'
+// import Pop from '../utils/Pop.js'
 import { notesService } from '../services/NotesService.js'
 export default {
   props: {
@@ -41,8 +41,8 @@ export default {
       profile: computed(() => AppState.profile),
       account: computed(() => AppState.account),
       bugs: computed(() => AppState.bugs),
-      async remove(note) {
-        await notesService.deleteNote(note.id)
+      async remove(noteId) {
+        await notesService.deleteNote(noteId)
       }
     }
   }

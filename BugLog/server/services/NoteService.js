@@ -22,10 +22,15 @@ class NoteService {
     return note
   }
 
-  async deleteNote(noteId, accountId) {
-    const note = await dbContext.Note.findById(noteId)
-    if (accountId !== note.creatorId.toString()) {
-      logger.log('testing the delete on server side', accountId)
+  async findNoteById(noteId) {
+    const note = await dbContext.Notes.findById(noteId)
+    return note
+  }
+
+  async deleteNote(noteId, userId) {
+    const note = await this.findNoteById(noteId)
+    if (userId !== note.creatorId.toString()) {
+      logger.log('testing the delete on server side', userId)
       throw new Forbidden('Not allowed to close')
     }
     await note.remove()
