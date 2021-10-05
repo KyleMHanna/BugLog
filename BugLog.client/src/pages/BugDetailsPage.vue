@@ -5,8 +5,14 @@
   <button class="btn-btn bg-success  selectable mt-3" data-bs-toggle="modal" data-bs-target="#currentbug-form" v-if="currentBug.closed ==true">
     <i class="mdi mdi-bug">Edit Bug</i>
   </button>
-  <!-- <button class="btn-btn bg-success  selectable mt-3" @click="trackBug()">
+  <button class="btn-btn bg-success  rounded shadow" title="Track Bug" v-if="!trackedbug" @click="trackBug(currentBug.id)">
     Track
+  </button>
+  <button class="btn-btn bg-danger  selectable mt-3" @click="close()" v-if="currentBug.closed==true">
+    close
+  </button>
+  <!-- <button class="btn-btn  selectable mt-3 btn-success" @click="close()" v-else>
+    open
   </button> -->
   <!-- FIXME -->
   <div class="BugDetailsPage container-fluid" v-if="currentBug.creator">
@@ -45,12 +51,10 @@
           <div class="text-center " v-if="currentBug.closed == true">
             <i class="mdi mdi-circle mdi-48px text-success "></i>
           </div>
+
           <div class="text-center " v-else>
             <i class="mdi mdi-circle mdi-48px  text-danger"></i>
           </div>
-          <button @click="close()">
-            close
-          </button>
         </div>
       </div>
     </div>
@@ -122,10 +126,11 @@ export default {
       notes: computed(() => AppState.notes),
       note: computed(() => AppState.note),
       async close() {
+        this.currentBug.closed = !this.currentBug.closed
         await bugsService.toggleClosed(route.params.bugId)
       },
-      async trackBug() {
-        await bugsService.createTrackedBug()
+      async trackBug(id) {
+        await bugsService.createTrackedBug(id)
       }
 
     }

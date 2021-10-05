@@ -1,6 +1,7 @@
 export class TrackedBug {
-  constructor(data) {
+  constructor(data = {}) {
     this.creatorId = data.creatorId
     this.bugId = data.bugId
+    this.id = data.id
   }
 }
