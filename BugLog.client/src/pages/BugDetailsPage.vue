@@ -21,8 +21,8 @@
   </button>
   <div>
     <!-- FIXME -->
-    <p>Users Tracking </p>
-    <!-- {{ trackedbugs.tracker.name }} -->
+    <!-- <p>Users Tracking </p>
+    {{ trackedbugs.tracker.name }} -->
   </div>
   <!-- FIXME -->
   <div class="BugDetailsPage container-fluid" v-if="currentBug.creator">
@@ -139,7 +139,11 @@ export default {
         await bugsService.toggleClosed(route.params.bugId)
       },
       async trackBug(id) {
-        await bugsService.createTrackedBug(id)
+        try {
+          await bugsService.createTrackedBug(id)
+        } catch (error) {
+          Pop.toast('Cant Track a bug twice')
+        }
       },
       async removeTrackedBug(accountId) {
         try {
