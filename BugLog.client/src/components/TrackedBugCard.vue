@@ -27,6 +27,9 @@
             <div class="text-danger" v-if="trackedbugs.priority >= 4">
               <h3>{{ trackedbugs.priority }}</h3>
             </div>
+            <span>
+              <!-- Last Updated:    {{ new Date(trackedbugs.updatedAt).toLocaleString('en',date) }} -->
+            </span>
           </div>
           <!-- Bug Status oopen or closed -->
           <div class="col-md-3  p-3  ">

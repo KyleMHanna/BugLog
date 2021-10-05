@@ -1,5 +1,6 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { accountService } from '../services/AccountService'
+import { bugsService } from '../services/BugsService.js'
 import BaseController from '../utils/BaseController'
 
 export class AccountController extends BaseController {
@@ -22,7 +23,7 @@ export class AccountController extends BaseController {
 
   async getUserTrackedBugs(req, res, next) {
     try {
-      const bugs = await accountService.getUserTrackedBugs(req.params.userId)
+      const bugs = await bugsService.getTrackedBugsByAccount(req.userInfo.id)
       res.send(bugs)
     } catch (error) {
       next(error)

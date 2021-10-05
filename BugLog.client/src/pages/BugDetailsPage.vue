@@ -9,7 +9,7 @@
     Track
   </button>
   <div v-else>
-    <button class="btn-btn bg-danger  rounded shadow" title="Track Bug" @click="deleteTrackedBug(currentBug.id)">
+    <button class="btn-btn bg-danger  rounded shadow" title="Track Bug" @click="removeTrackedBug(currentBug.id)">
       Remove
     </button>
   </div>
@@ -126,7 +126,7 @@ export default {
       account: computed(() => AppState.account),
       profile: computed(() => AppState.profile),
       currentBug: computed(() => AppState.currentBug),
-      trackedbugs: computed(() => AppState.trackedbugs),
+      trackedbugs: computed(() => AppState.trackedbugs.find(b => b.accountId === AppState.account.id)),
       bugs: computed(() => AppState.bugs),
       bug: computed(() => AppState.bug),
       notes: computed(() => AppState.notes),
@@ -137,8 +137,14 @@ export default {
       },
       async trackBug(id) {
         await bugsService.createTrackedBug(id)
+      },
+      async removeTrackedBug(accountId) {
+        try {
+          await bugsService.deleteTrackedBug(accountId)
+        } catch (error) {
+          Pop.toast(error.message, 'error')
+        }
       }
-
     }
   }
 }
