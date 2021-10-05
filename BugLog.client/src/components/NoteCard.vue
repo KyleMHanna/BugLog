@@ -10,8 +10,8 @@
         <img :src="note.creator.picture" :alt="note.creator.name" :title="note.creator.name">
       </div>
       <div class="col-md-8 text-center">
-        <div class="card-body  text-center ">
-          <p class="card-text text-center ">
+        <div class="card-body  ">
+          <p class="card-text ">
             {{ note.body }}
           </p>
         </div>
