@@ -1,7 +1,7 @@
 import { dbContext } from '../db/DbContext.js'
-// import { Forbidden } from '../utils/Errors.js'
+import { Forbidden } from '../utils/Errors.js'
 // import { bugsService } from '../services/BugsService.js'
-// import { logger } from '../utils/Logger.js'
+import { logger } from '../utils/Logger.js'
 
 class NoteService {
   // async createNote(noteData) {
@@ -22,11 +22,12 @@ class NoteService {
     return note
   }
 
-  async deleteNote(noteId, userId) {
-    const note = await dbContext.Notes.findByIdAndRemove(noteId)
-    // if (userId !== note.creatorId.toString()) {
-    //   throw new Forbidden('Not allowed to close')
-    // }
+  async deleteNote(noteId, accountId) {
+    const note = await dbContext.Note.findById(noteId)
+    if (accountId !== note.creatorId.toString()) {
+      logger.log('testing the delete on server side', accountId)
+      throw new Forbidden('Not allowed to close')
+    }
     await note.remove()
     return note
   }

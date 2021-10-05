@@ -12,12 +12,12 @@ class AccountService {
     }
   }
 
-  async TrackedBugs(accountId) {
+  async TrackedBugs() {
     const res = await api.get('/account/trackedbugs')
     AppState.trackedbugs = res.data
-    res.data = AppState.accountBugs
+
     // TODO not sure if ^ works
-    logger.log('💀 tracked bugs in account service', accountId)
+    logger.log('💀 tracked bugs in account service')
   }
 }
 
