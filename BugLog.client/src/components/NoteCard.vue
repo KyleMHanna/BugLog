@@ -7,7 +7,7 @@
         </button>
       </div>
       <div class="col-md-1 px-3 ">
-        <img :src="note.creator.picture" :alt="note.creator.name" :title="note.creator.name">
+        <img class="rounded" :src="note.creator.picture" :alt="note.creator.name" :title="note.creator.name">
       </div>
       <div class="col-md-10 text-center  px-4">
         <h3>{{ note.body }}</h3>

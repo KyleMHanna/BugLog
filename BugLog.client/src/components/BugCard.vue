@@ -5,15 +5,15 @@
         <div class="row ">
           <div class="col-md-3  p-3  ">
             <router-link :to="{name: 'BugDetails', params: {bugId: bug.id }}" :title="bug.title">
-              <h3 class="text-center text-dark selectable ">
+              <h3 class="text-center  selectable ">
                 {{ bug.title }}
               </h3>
             </router-link>
           </div>
           <div class="col-md-3  p-3  ">
-            <h3 class="card-text text-style text-center ">
+            <h5 class="card-text text-style text-center ">
               {{ bug.description }}
-            </h3>
+            </h5>
           </div>
 
           <!-- Bug priority level -->

@@ -19,10 +19,10 @@
   <!-- <button class="btn-btn  selectable mt-3 " title="Open" @click="close()" v-else>
     open
   </button> -->
-  <div>
-    <!-- FIXME -->
-    <!-- <p>Users Tracking </p>
-    {{ trackedbugs.tracker.name }} -->
+  <!-- FIXME -->
+  <div v-if="trackedbugs">
+    <p>Users Tracking </p>
+    {{ trackedbugs.tracker.name }}
   </div>
   <!-- FIXME -->
   <div class="BugDetailsPage container-fluid" v-if="currentBug.creator">
@@ -33,9 +33,9 @@
           <i class="mdi mdi-delete text-danger f-20 selectable" @click="deleteBug()"></i>
         </div> -->
         <div v-if="currentBug.creator">
-          {{ currentBug.creator.name }}
+          Reported by: {{ currentBug.creator.name }}
           <div class="col-md-2 p-2 " v-if="currentBug.creator.picture">
-            <img :src="currentBug.creator.picture" :alt="currentBug.creator.name" :title="currentBug.creator.name">
+            <img class="rounded" :src="currentBug.creator.picture" :alt="currentBug.creator.name" :title="currentBug.creator.name">
           </div>
         </div>
         <div class="d-flex  p-2">
