@@ -4,7 +4,9 @@
     <img class="rounded" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
   </div>
-  <TrackedBugCard v-for="b in trackedbugs" :key="b.id" :bug="b.bug" />
+  <div v-if="trackedbugs">
+    <TrackedBugCard v-for="b in trackedbugs" :key="b.id" :bug="b" />
+  </div>
 </template>
 
 <script>
