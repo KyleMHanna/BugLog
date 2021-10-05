@@ -8,6 +8,11 @@
   <button class="btn-btn bg-success  rounded shadow" title="Track Bug" v-if="!trackedbug" @click="trackBug(currentBug.id)">
     Track
   </button>
+  <div v-else>
+    <button class="btn-btn bg-danger  rounded shadow" title="Track Bug" @click="deleteTrackedBug(currentBug.id)">
+      Remove
+    </button>
+  </div>
   <button class="btn-btn bg-danger  selectable mt-3" @click="close()" v-if="currentBug.closed==true">
     close
   </button>
@@ -121,6 +126,7 @@ export default {
       account: computed(() => AppState.account),
       profile: computed(() => AppState.profile),
       currentBug: computed(() => AppState.currentBug),
+      trackedbugs: computed(() => AppState.trackedbugs),
       bugs: computed(() => AppState.bugs),
       bug: computed(() => AppState.bug),
       notes: computed(() => AppState.notes),
