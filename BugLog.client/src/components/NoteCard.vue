@@ -9,19 +9,16 @@
       <div class="col-md-1 px-3 ">
         <img :src="note.creator.picture" :alt="note.creator.name" :title="note.creator.name">
       </div>
-      <div class="col-md-8 text-center">
-        <div class="card-body  ">
-          <p class="card-text ">
-            {{ note.body }}
-          </p>
-        </div>
+      <div class="col-md-10 text-center  px-4">
+        <h3>{{ note.body }}</h3>
       </div>
     </div>
-    <div class="card-text text-center ">
+    <div class=" text-center ">
       <small class="text-dark">Created By: {{ note.creator.name }}</small>
       <br>
       <small>{{ Date(note.createdAt) }}</small>
     </div>
+    <div class="col-md-1"></div>
   </div>
 </template>
 

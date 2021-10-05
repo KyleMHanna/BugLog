@@ -1,27 +1,28 @@
 <template>
-  <button class="btn-btn bg-success  selectable mt-3" data-bs-toggle="modal" data-bs-target="#note-form">
+  <button class="btn-btn  selectable mt-3" data-bs-toggle="modal" data-bs-target="#note-form">
     Comment
   </button>
   <button class="btn-btn bg-success  selectable mt-3" data-bs-toggle="modal" data-bs-target="#currentbug-form" v-if="currentBug.closed ==true">
     <i class="mdi mdi-bug">Edit Bug</i>
   </button>
-  <button class="btn-btn bg-success  rounded shadow" title="Track Bug" v-if="!trackedbug" @click="trackBug(currentBug.id)">
+  <button class="btn-btn  rounded shadow" title="Track Bug" v-if="!trackedbug" @click="trackBug(currentBug.id)">
     Track
   </button>
   <div v-else>
-    <button class="btn-btn bg-danger  rounded shadow" title="Track Bug" @click="removeTrackedBug(currentBug.id)">
+    <button class="btn-btn bg-danger  rounded shadow" title="un Track Bug" @click="removeTrackedBug(currentBug.id)">
       Remove
     </button>
   </div>
-  <button class="btn-btn bg-danger  selectable mt-3" @click="close()" v-if="currentBug.closed==true">
+  <button class="btn-btn bg-danger  selectable mt-3" title="Close" @click="close()" v-if="currentBug.closed==true">
     close
   </button>
-  <button class="btn-btn  selectable mt-3 btn-success" @click="close()" v-else>
+  <!-- <button class="btn-btn  selectable mt-3 " title="Open" @click="close()" v-else>
     open
-  </button>
+  </button> -->
   <div>
+    <!-- FIXME -->
     <p>Users Tracking </p>
-    {{ trackedbugs.tracker.name }}
+    <!-- {{ trackedbugs.tracker.name }} -->
   </div>
   <!-- FIXME -->
   <div class="BugDetailsPage container-fluid" v-if="currentBug.creator">
@@ -132,6 +133,7 @@ export default {
       bug: computed(() => AppState.bug),
       notes: computed(() => AppState.notes),
       note: computed(() => AppState.note),
+      tracked: computed(() => AppState.tracked),
       async close() {
         this.currentBug.closed = !this.currentBug.closed
         await bugsService.toggleClosed(route.params.bugId)
