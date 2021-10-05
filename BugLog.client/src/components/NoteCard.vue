@@ -1,14 +1,12 @@
 <template>
   <div class="card" v-if="note.creator">
     <div class="row text-center">
-      <div class="on-hover col-md-1 " v-if="note.creatorId === account.id">
-        <button class="btn text-dark lighten-20 selectable" @click="remove(note)">
-          <b>
-            Remove note
-          </b>
+      <div class="on-hover" v-if="note.creatorId === account.id">
+        <button class="btn text-dark lighten-20 selectable" title="remove note" @click="remove(note)">
+          Remove note
         </button>
       </div>
-      <div class="col-md-1 p-2 ">
+      <div class="col-md-1 px-3 ">
         <img :src="note.creator.picture" :alt="note.creator.name" :title="note.creator.name">
       </div>
       <div class="col-md-8 text-center">

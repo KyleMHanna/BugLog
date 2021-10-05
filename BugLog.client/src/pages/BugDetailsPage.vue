@@ -1,6 +1,6 @@
 <template>
   <button class="btn-btn bg-success  selectable mt-3" data-bs-toggle="modal" data-bs-target="#note-form">
-    <i class="mdi mdi-plus">Note</i>
+    Comment
   </button>
   <button class="btn-btn bg-success  selectable mt-3" data-bs-toggle="modal" data-bs-target="#currentbug-form" v-if="currentBug.closed ==true">
     <i class="mdi mdi-bug">Edit Bug</i>
@@ -19,6 +19,10 @@
   <button class="btn-btn  selectable mt-3 btn-success" @click="close()" v-else>
     open
   </button>
+  <div>
+    <p>Users Tracking </p>
+    {{ trackedbugs.tracker.name }}
+  </div>
   <!-- FIXME -->
   <div class="BugDetailsPage container-fluid" v-if="currentBug.creator">
     <div class="row my-5 align-content-center">
