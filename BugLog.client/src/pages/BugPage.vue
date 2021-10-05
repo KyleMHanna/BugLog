@@ -22,9 +22,9 @@
           <!-- priority sort functoinality -->
           <div class="col-md-3 card-header text-center">
             <div class="">
-              <button class="btn selectable me-2 text-white" @click="toggleAscending">
-                <i class="mdi mdi-arrow-up text-success mdi-24px" v-if="ascending"></i>
-                <i class="mdi mdi-arrow-down text-danger mdi-24px" v-else></i>
+              <button class="btn selectable me-2 text-dark" @click="toggleAscending">
+                <i class="mdi mdi-arrow-up  mdi-24px" v-if="ascending"> Highest Priority</i>
+                <i class="mdi mdi-arrow-down  mdi-24px" v-else> lowest Priority</i>
               </button>
             </div>
             <!-- <button class="btn-btn bg-dark text-light rounded shadow" @click="order('all')">

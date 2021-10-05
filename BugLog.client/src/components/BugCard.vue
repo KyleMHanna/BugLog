@@ -5,7 +5,7 @@
         <div class="row ">
           <div class="col-md-3  p-3  ">
             <router-link :to="{name: 'BugDetails', params: {bugId: bug.id }}" :title="bug.title">
-              <h3 class="text-center">
+              <h3 class="text-center text-dark selectable ">
                 {{ bug.title }}
               </h3>
             </router-link>

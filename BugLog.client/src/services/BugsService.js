@@ -46,6 +46,12 @@ class BugsService {
     }
   }
 
+  async getTrackedBugs(bugId) {
+    AppState.trackedBugs = []
+    const res = await api.get(`api/bugs/${bugId}/trackedbugs`)
+    AppState.trackedBugs = res.data
+  }
+
   async editBug(editBug, bugId) {
     const res = await api.put(`api/bugs/${bugId}`, editBug)
     AppState.bug = new Bug(res.data)

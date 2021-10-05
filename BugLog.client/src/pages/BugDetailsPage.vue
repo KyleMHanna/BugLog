@@ -2,8 +2,8 @@
   <button class="btn-btn  selectable mt-3" data-bs-toggle="modal" data-bs-target="#note-form">
     Comment
   </button>
-  <button class="btn-btn bg-success  selectable mt-3" data-bs-toggle="modal" data-bs-target="#currentbug-form" v-if="currentBug.closed ==true">
-    <i class="mdi mdi-bug">Edit Bug</i>
+  <button class=" btn-outline-success  text-dark   mt-3" data-bs-toggle="modal" data-bs-target="#currentbug-form" v-if="currentBug.closed ==true">
+    Edit Bug
   </button>
   <button class="btn-btn  rounded shadow" title="Track Bug" v-if="!trackedbug" @click="trackBug(currentBug.id)">
     Track
@@ -16,9 +16,9 @@
   <button class="btn-btn bg-danger  selectable mt-3" title="Close" @click="close()" v-if="currentBug.closed==true">
     close
   </button>
-  <!-- <button class="btn-btn  selectable mt-3 " title="Open" @click="close()" v-else>
+  <button class="btn-btn  selectable mt-3 " title="Open" @click="close()" v-else>
     open
-  </button> -->
+  </button>
   <div>
     <!-- FIXME -->
     <p>Users Tracking </p>
@@ -105,7 +105,7 @@ export default {
     onMounted(async() => {
       try {
         await bugsService.getBugById(route.params.bugId)
-
+        await bugsService.getTrackedBugs(route.params.bugId)
         await notesService.getBugNotes(route.params.bugId)
       } catch (error) {
         Pop.toast(error, 'error')
