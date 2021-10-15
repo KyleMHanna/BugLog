@@ -47,9 +47,9 @@ class BugsService {
   }
 
   async getTrackedBugs(bugId) {
-    AppState.trackedBugs = []
+    AppState.trackedbugs = []
     const res = await api.get(`api/bugs/${bugId}/trackedbugs`)
-    AppState.trackedBugs = res.data
+    AppState.trackedbugs = res.data
   }
 
   async editBug(editBug, bugId) {
@@ -72,9 +72,9 @@ class BugsService {
     }
   }
 
-  async deleteTrackedBug(accountId) {
+  async deleteTrackedBug(id) {
     const trackedbugs = AppState.trackedbugs
-    const currenttracked = trackedbugs.find(t => t.accountId === accountId)
+    const currenttracked = trackedbugs.find(t => t.accountId === id)
     const res = await api.delete(`api/trackedbugs/${currenttracked.id}`)
     logger.log('tracked delete', res)
     AppState.trackedbugs = AppState.trackedbugs.filter(t => t.id !== currenttracked.id)

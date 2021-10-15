@@ -5,14 +5,14 @@
   <button class=" btn-outline-success  text-dark   mt-3" data-bs-toggle="modal" data-bs-target="#currentbug-form" v-if="currentBug.closed ==true">
     Edit Bug
   </button>
-  <button class="btn-btn  rounded shadow" title="Track Bug" v-if="!trackedbug" @click="trackBug(currentBug.id)">
+  <button class="btn-btn  rounded shadow" title="Track Bug" v-if="!trackedbugs" @click="trackBug(currentBug.id)">
     Track
   </button>
-  <div v-else>
-    <button class="btn-btn bg-danger  rounded shadow" title="un Track Bug" @click="removeTrackedBug(currentBug.id)">
-      Remove
-    </button>
-  </div>
+
+  <!-- <button class="btn-btn bg-danger  rounded shadow" title="un Track Bug" @click="removeTrackedBug(currentBug.id)" v-else>
+    Remove
+  </button> -->
+
   <button class="btn-btn bg-danger  selectable mt-3" title="Close" @click="close()" v-if="currentBug.closed==true">
     close
   </button>
@@ -145,9 +145,9 @@ export default {
           Pop.toast('Cant Track a bug twice')
         }
       },
-      async removeTrackedBug(accountId) {
+      async removeTrackedBug(id) {
         try {
-          await bugsService.deleteTrackedBug(accountId)
+          await bugsService.deleteTrackedBug(id)
         } catch (error) {
           Pop.toast(error.message, 'error')
         }
