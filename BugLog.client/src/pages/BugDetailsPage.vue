@@ -16,9 +16,9 @@
   <button class="btn-btn bg-danger  selectable mt-3" title="Close" @click="close()" v-if="currentBug.closed==true">
     close
   </button>
-  <!-- <button class="btn-btn  selectable mt-3 " title="Open" @click="close()" v-else>
+  <button class="btn-btn  selectable mt-3 " title="Open" @click="close()" v-else>
     open
-  </button> -->
+  </button>
   <!-- FIXME -->
   <div v-if="trackedbugs">
     <p>Users Tracking </p>
