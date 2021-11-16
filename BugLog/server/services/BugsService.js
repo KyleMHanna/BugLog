@@ -1,5 +1,7 @@
-import { dbContext } from '../db/DbContext.js'
-import { BadRequest, Forbidden } from '../utils/Errors.js'
+/* eslint-disable block-spacing */
+/* eslint-disable object-curly-spacing */
+import {dbContext} from '../db/DbContext.js'
+import {BadRequest, Forbidden} from '../utils/Errors.js'
 // import { logger } from '../utils/Logger.js'
 
 class BugsService {
@@ -18,15 +20,15 @@ class BugsService {
   }
 
   async getNotesById(bugId) {
-    const bug = await dbContext.Notes.find({ bugId }).populate('creator')
+    const bug = await dbContext.Notes.find({bugId}).populate('creator')
     if (!bug) {
-      throw BadRequest('invalid Id')
+      throw new BadRequest('invalid Id')
     }
     return bug
   }
 
   async getTrackedBugs(bugId) {
-    const trackedBugs = await dbContext.TrackedBugs.find({ bugId }).populate('bug').populate('tracker')
+    const trackedBugs = await dbContext.TrackedBugs.find({bugId}).populate('bug').populate('tracker')
     return trackedBugs
   }
 
@@ -50,7 +52,7 @@ class BugsService {
 
   async closeBug(bugId, userId) {
     const bug = await this.getBugById(bugId)
-    if (bug.closed === true) { return }
+    if (bug.closed === true) {return }
     if (userId !== bug.creatorId.toString()) {
       throw new Forbidden('Not allowed to close')
     }
@@ -60,12 +62,12 @@ class BugsService {
   }
 
   async getTrackedBugsByAccount(accountId) {
-    const trackedBugs = await dbContext.TrackedBugs.find({ accountId }).populate('bug').populate('tracker')
+    const trackedBugs = await dbContext.TrackedBugs.find({accountId}).populate('bug').populate('tracker')
     return trackedBugs
   }
 
   async getTrackedBugsById(bugId) {
-    const bugs = await dbContext.TrackedBugs.find({ bugId }).populate('tracker').populate('bug')
+    const bugs = await dbContext.TrackedBugs.find({bugId}).populate('tracker').populate('bug')
     return bugs
   }
 }

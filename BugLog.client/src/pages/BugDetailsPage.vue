@@ -9,7 +9,7 @@
     Track
   </button>
 
-  <!-- <button class="btn-btn bg-danger  rounded shadow" title="un Track Bug" @click="removeTrackedBug(currentBug.id)" v-else>
+  <!-- <button class="btn-btn bg-danger  rounded shadow" title="un Track Bug" @click="removeTrackedBug(trackedbugs.id)" v-else>
     Remove
   </button> -->
 

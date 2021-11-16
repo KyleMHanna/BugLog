@@ -29,8 +29,8 @@ export default {
     return {
       route,
       account: computed(() => AppState.account),
-      trackedbugs: computed(() => AppState.trackedbugs),
-      bugs: computed(() => AppState.trackedbugs)
+      trackedbugs: computed(() => AppState.trackedbugs)
+      // bugs: computed(() => AppState.trackedbugs)
 
     }
   }
